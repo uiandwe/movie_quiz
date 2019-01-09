@@ -70,17 +70,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'movie_quiz.wsgi.application'
 
 DATABASES_PASSWORD = os.getenv("PASSWORD")
+DATABASES_HOST = os.getenv("DB_HOST")
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-print("DATABASES_PASSWORD", DATABASES_PASSWORD)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'movieQuiz',  # DB명
         'USER': 'root',  # 데이터베이스 계정
         'PASSWORD': DATABASES_PASSWORD,  # 계정 비밀번호
-        'HOST': '127.0.0.1',  # 데이테베이스 주소(IP)
+        'HOST': DATABASES_HOST,  # 데이테베이스 주소(IP)
         'PORT': '3306',  # 데이터베이스 포트(보통은 3306)
     }
 }
