@@ -54,7 +54,7 @@ ROOT_URLCONF = 'movie_quiz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates"),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,14 +69,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'movie_quiz.wsgi.application'
 
+DATABASES_PASSWORD = os.getenv("PASSWORD")
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+print("DATABASES_PASSWORD", DATABASES_PASSWORD)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'movieQuiz',  # DB명
+        'USER': 'root',  # 데이터베이스 계정
+        'PASSWORD': DATABASES_PASSWORD,  # 계정 비밀번호
+        'HOST': '127.0.0.1',  # 데이테베이스 주소(IP)
+        'PORT': '3306',  # 데이터베이스 포트(보통은 3306)
     }
 }
 
@@ -103,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'UTC'
 
@@ -118,3 +123,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
