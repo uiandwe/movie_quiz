@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'quiz.apps.QuizConfig',
+    'movie.apps.MovieConfig',
     'rest_framework',
     'rest_framework_swagger'
 ]
