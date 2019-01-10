@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^quiz/', TemplateView.as_view(template_name='index.html')),
     url(r'^api/', include(router.urls)),
     url(r'^api/doc/', get_swagger_view(title='Rest API Document')),
+    url(r'^movie/', include('movie.urls')),
 
 ]
