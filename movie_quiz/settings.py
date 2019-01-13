@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'quiz.apps.QuizConfig',
     'movie.apps.MovieConfig',
+    'score.apps.ScoreConfig',
     'rest_framework',
     'rest_framework_swagger'
 ]
@@ -133,9 +134,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
+DATABASE_OPTIONS = {'charset': 'utf8'}
+TIME_ZONE = 'Asia/Seoul'
 LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
