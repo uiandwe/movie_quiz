@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'movie.apps.MovieConfig',
     'score.apps.ScoreConfig',
     'rest_framework',
-    'rest_framework_swagger'
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
