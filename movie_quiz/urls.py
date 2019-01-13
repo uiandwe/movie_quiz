@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^quiz/', TemplateView.as_view(template_name='index.html')),
     url(r'^api/', include(router.urls)),
     url(r'^movie/', include('movie.urls')),
+    url(r'^score/', include('score.urls')),
     url(r'^api/doc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 
 ]
