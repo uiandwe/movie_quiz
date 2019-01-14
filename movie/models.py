@@ -5,6 +5,9 @@ from core.models import TimeStampeModel, FileModel
 class MovieFile(FileModel):
     file = models.FileField(blank=True, default='')
 
+    class Meta:
+        ordering = ['-id']
+
 
 class Movie(TimeStampeModel):
     title = models.CharField(max_length=100, blank=True, default='')
@@ -12,3 +15,5 @@ class Movie(TimeStampeModel):
     owner = models.ForeignKey('auth.User', related_name='movie', on_delete=models.CASCADE, null=False)
     file_id = models.ForeignKey(MovieFile, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-id']
