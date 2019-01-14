@@ -6,5 +6,8 @@ class Score(TimeStampeModel):
     score = models.IntegerField()
     userName = models.CharField(max_length=255)
 
+    class Meta:
+        ordering = ['-id']
+
 
 
