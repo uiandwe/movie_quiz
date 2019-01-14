@@ -26,18 +26,18 @@ schema_view = get_swagger_view(title='rest API')
 
 router = routers.DefaultRouter()
 
-schema_view = get_schema_view(
-   openapi.Info(
-      title="movie quze API",
-      default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
-   ),
-   validators=['flex', 'ssv'],
-   public=True,
-)
+# schema_view = get_schema_view(
+#    openapi.Info(
+#       title="movie quze API",
+#       default_version='v1',
+#       description="Test description",
+#       terms_of_service="https://www.google.com/policies/terms/",
+#       contact=openapi.Contact(email="contact@snippets.local"),
+#       license=openapi.License(name="BSD License"),
+#    ),
+#    validators=['flex', 'ssv'],
+#    public=True,
+# )
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -45,7 +45,8 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^movie/', include('movie.urls')),
     url(r'^score/', include('score.urls')),
-    url(r'^api/doc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    # url(r'^api/doc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    url(r'^api/doc', get_swagger_view(title='Rest API Document')),
 
 ]
 

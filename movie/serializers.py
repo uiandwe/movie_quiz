@@ -11,8 +11,8 @@ class MovieSerializer(serializers.ModelSerializer):
 
 
 class MovieFileSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = MovieFile
-        fields = '__all__'
+        fields = ('id', 'file', 'folder', 'dateFolderPath', 'fileName')
+        read_only_fields = ('folder', 'dateFolderPath', 'fileName')

@@ -2,8 +2,11 @@ from django.db import models
 from core.models import TimeStampeModel, FileModel
 
 
-class MovieFile(FileModel):
+class MovieFile(models.Model):
     file = models.FileField(blank=True, default='')
+    folder = models.CharField(max_length=255)
+    dateFolderPath = models.CharField(max_length=255)
+    fileName = models.CharField(max_length=255)
 
     class Meta:
         ordering = ['-id']
