@@ -22,7 +22,7 @@ def path_and_rename(instance, filename):
 
 class MovieFile(models.Model):
     file = models.FileField(blank=True, default='', upload_to=path_and_rename)
-    
+
     class Meta:
         ordering = ['-id']
 
