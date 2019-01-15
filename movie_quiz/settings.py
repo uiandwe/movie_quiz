@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'movie.apps.MovieConfig',
     'score.apps.ScoreConfig',
     'rest_framework',
-    'drf_yasg',
+    # 'drf_yasg',
+    'rest_framework_swagger'
 ]
 
 REST_FRAMEWORK = {
@@ -54,7 +55,8 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        'rest_framework.permissions.AllowAny',
     ],
 }
 

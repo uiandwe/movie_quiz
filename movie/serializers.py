@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from movie.models import Movie
+from movie.models import Movie, MovieFile
 
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -9,3 +9,8 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = '__all__'
 
+
+class MovieFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MovieFile
+        fields = '__all__'
