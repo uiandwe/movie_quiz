@@ -36,20 +36,21 @@ class FileList(generics.ListCreateAPIView):
         uploaded_file = request.FILES['file']
         if uploaded_file is not None:
 
-            directory = os.path.dirname(os.path.abspath(__file__)) + "/.." + settings.MEDIA_URL + datetime.datetime.today().strftime('%Y-%m-%d')
+            directory = os.path.dirname(os.path.abspath(__file__)) + "/.." + settings.MEDIA_URL + datetime.datetime.today().strftime('%Y%m%d')
 
             if not os.path.exists(directory):
                 os.makedirs(directory)
 
-            fileName = hashlib.md5(uploaded_file.name.encode()).hexdigest()
-            fileExtention = os.path.splitext(str(request.FILES['file']))[1].replace(".", "")
-            fileName = fileName +"."+ fileExtention
-            with open(directory + "/" + fileName, 'wb+') as destination:
+            file_name = hashlib.md5(uploaded_file.name.encode()).hexdigest()
+            
+            file_extension = os.path.splitext(str(request.FILES['file']))[1].replace(".", "")
+            file_name = file_name + "." + file_extension
+            with open(directory + "/" + file_name, 'wb+') as destination:
                 for chunk in uploaded_file.chunks():
                     destination.write(chunk)
                     destination.close()
 
-            request.data["fileName"] = fileName
+            request.data["fileName"] = file_name
             request.data["dateFolderPath"] = settings.MEDIA_URL
             request.data["folder"] = settings.MEDIA_URL
 
