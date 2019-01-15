@@ -3,13 +3,6 @@ from movie.serializers import MovieSerializer, MovieFileSerializer
 from rest_framework import generics
 from rest_framework import permissions
 from movie.permissions import IsOwnerOrReadOnly
-import os
-import datetime
-from django.conf import settings
-import hashlib
-from rest_framework.response import Response
-from rest_framework import status
-
 
 class MovieList(generics.ListCreateAPIView):
     queryset = Movie.objects.all()
@@ -29,39 +22,8 @@ class MovieDetail(generics.RetrieveUpdateDestroyAPIView):
 class FileList(generics.ListCreateAPIView):
     queryset = MovieFile.objects.all()
     serializer_class = MovieFileSerializer
+
     # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-
-    def post(self, request, *args, **kwargs):
-
-        uploaded_file = request.FILES['file']
-        if uploaded_file is not None:
-
-            directory = os.path.dirname(os.path.abspath(__file__)) + "/.." + settings.MEDIA_URL + datetime.datetime.today().strftime('%Y%m%d')
-
-            if not os.path.exists(directory):
-                os.makedirs(directory)
-
-            file_name = hashlib.md5(uploaded_file.name.encode()).hexdigest()
-            
-            file_extension = os.path.splitext(str(request.FILES['file']))[1].replace(".", "")
-            file_name = file_name + "." + file_extension
-            with open(directory + "/" + file_name, 'wb+') as destination:
-                for chunk in uploaded_file.chunks():
-                    destination.write(chunk)
-                    destination.close()
-
-            request.data["fileName"] = file_name
-            request.data["dateFolderPath"] = settings.MEDIA_URL
-            request.data["folder"] = settings.MEDIA_URL
-
-        serializer = MovieFileSerializer(data=request.data)
-
-        if not serializer.is_valid():
-            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
-
-        serializer.save()
-
-        return Response(serializer.data, status.HTTP_200_OK)
 
 
 class FileDetail(generics.RetrieveUpdateDestroyAPIView):
