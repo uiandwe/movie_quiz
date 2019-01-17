@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework import permissions
 from movie.permissions import IsOwnerOrReadOnly
 
+
 class MovieList(generics.ListCreateAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer

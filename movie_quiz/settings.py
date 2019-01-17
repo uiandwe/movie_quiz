@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
-    'quiz.apps.QuizConfig',
     'movie.apps.MovieConfig',
     'score.apps.ScoreConfig',
     'rest_framework',
