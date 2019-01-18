@@ -40,4 +40,9 @@ class Movie(TimeStampeModel):
 
 class Classification(TimeStampeModel):
     class_text = models.CharField(max_length=100, null=False)
-    movie = models.ManyToManyField(Movie)
+    movies = models.ManyToManyField(Movie)
+
+
+class MovieClassificationBridge(models.Model):
+    movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    classification_id = models.ForeignKey(Classification, on_delete=models.CASCADE)

@@ -17,8 +17,8 @@ class ClassificationSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-    classification = ClassificationSerializer(many=True, read_only=True)
 
     class Meta:
         model = Movie
-        fields = ('id', 'title', 'desc', 'owner', 'file_id', 'classification')
+        fields = ('id', 'title', 'desc', 'owner', 'file_id')
+        # depth = 1 #해당 옵션시 리스트엔 객체로 보이지만 post를 날릴수 없음
