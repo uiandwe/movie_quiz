@@ -40,4 +40,4 @@ class Movie(TimeStampeModel):
 
 class Classification(TimeStampeModel):
     class_text = models.CharField(max_length=100, null=False)
-    movies = models.ManyToManyField(Movie)
+    movie = models.ManyToManyField(Movie)
