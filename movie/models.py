@@ -28,6 +28,7 @@ class MovieFile(models.Model):
 
 
 class Movie(TimeStampeModel):
+    """ 한글 저장 케릭터셋 변경 ALTER TABLE movie_movie convert to charset utf8; """
     title = models.CharField(max_length=100, blank=True, default='')
     desc = models.TextField()
     owner = models.ForeignKey('auth.User', related_name='movie', on_delete=models.CASCADE, null=False)
@@ -35,3 +36,13 @@ class Movie(TimeStampeModel):
 
     class Meta:
         ordering = ['-id']
+
+
+class Classification(TimeStampeModel):
+    class_text = models.CharField(max_length=100, null=False)
+    movies = models.ManyToManyField(Movie)
+
+
+class MovieClassificationBridge(models.Model):
+    movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    classification_id = models.ForeignKey(Classification, on_delete=models.CASCADE)
