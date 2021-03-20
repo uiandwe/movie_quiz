@@ -23,7 +23,7 @@ idna==2.7
 iso8601==0.1.12
 itsdangerous==1.1.0
 itypes==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 libsass==0.16.1
 livereload==2.6.0
 m3u8==0.3.6
