@@ -44,7 +44,7 @@ PyMySQL==0.9.3
 pytest==2.9.1
 pytest-splinter==1.7.3
 pytz==2018.7
-PyYAML==3.13
+PyYAML==5.4
 rcssmin==1.0.6
 requests==2.20.0
 rjsmin==1.0.12
